@@ -21,8 +21,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Button } from "./button";
-import { Input } from "./input";
 
 function normalizeString(value: string, whiteSpaceReplace = "-") {
   const alphabetSpecialChars = "àáäâãèéëêìíïîòóöôùúüûñçßÿœæŕśńṕẃǵǹḿǘẍźḧ·/_,:;";
@@ -57,7 +55,6 @@ export function DataTable<TData, TValue>({
   pageSize = 10,
   searchFields = [],
   defaultSearch = "",
-  searchPlaceholder = "Filter by data below...",
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [globalFilter, setGlobalFilter] = React.useState(defaultSearch);

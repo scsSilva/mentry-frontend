@@ -17,7 +17,7 @@ import { REGEXP_ONLY_DIGITS } from "input-otp";
 import { useJoinGroupByCode } from "@/hooks/api/use-group-data";
 
 export const JoinGroupByCodeDialog = () => {
-  const { mutate, isPending, error } = useJoinGroupByCode();
+  const { mutate } = useJoinGroupByCode();
   const [isOpen, setIsOpen] = useState(false);
   const [code, setCode] = useState("");
 

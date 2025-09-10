@@ -5,7 +5,6 @@ import {
   SidebarHeader,
   SidebarMenuButton,
   SidebarRail,
-  useSidebar,
 } from "@/components/ui/sidebar";
 import type { ComponentProps } from "react";
 import { Link } from "react-router-dom";
