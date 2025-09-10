@@ -1,10 +1,12 @@
 import { ThemeProvider } from "@/components/theme-provider";
-import { AuthPage } from "./pages/Auth";
+import { RouterApp } from "./routes/routes";
+import { Toaster } from "react-hot-toast";
 
 export const App = () => {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      <AuthPage />
+      <RouterApp />
+      <Toaster position="top-right" />
     </ThemeProvider>
   );
 };
