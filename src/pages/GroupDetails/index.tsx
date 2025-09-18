@@ -25,8 +25,6 @@ export const GroupDetails = () => {
   const setGroup = useGroupStore((state) => state.setGroup);
   const resetGroup = useGroupStore((state) => state.resetGroup);
 
-  console.log(data);
-
   useEffect(() => {
     if (data) {
       setGroup(data);
