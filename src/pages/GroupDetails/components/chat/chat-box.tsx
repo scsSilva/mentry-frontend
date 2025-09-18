@@ -95,9 +95,9 @@ export const ChatBox = () => {
   }, [messages]);
 
   return (
-    <div className="w-full flex flex-col h-[500px] border border-border rounded-md p-4 bg-background">
+    <div className="w-full max-h-[80vh] min-h-[300px] flex flex-col bg-background border border-border rounded-md p-4 px-2">
       <div
-        className="flex-1 overflow-y-auto flex flex-col gap-2 mb-4 pr-1"
+        className="chat-scroll flex-1 min-h-0 overflow-y-auto flex flex-col gap-2 pr-1"
         ref={containerRef}
       >
         {messages.map((msg) => {
@@ -119,15 +119,18 @@ export const ChatBox = () => {
         })}
       </div>
 
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2 mt-4">
         <Input
-          className="flex-1 h-10 rounded-md text-sm"
+          className="flex-1 h-10 sm:h-12 text-sm rounded-md"
           placeholder="Digite sua mensagem..."
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && handleSend()}
         />
-        <Button onClick={handleSend} className="h-10 text-sm px-4">
+        <Button
+          onClick={handleSend}
+          className="h-10 sm:h-12 text-sm px-4 sm:px-6"
+        >
           Enviar
         </Button>
       </div>

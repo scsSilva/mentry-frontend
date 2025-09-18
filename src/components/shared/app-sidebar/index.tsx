@@ -3,7 +3,9 @@ import {
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
+  SidebarMenu,
   SidebarMenuButton,
+  SidebarMenuItem,
   SidebarRail,
 } from "@/components/ui/sidebar";
 import type { ComponentProps } from "react";
@@ -23,11 +25,9 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { CircleChevronDown } from "lucide-react";
+import { ChevronUp, User2 } from "lucide-react";
 
 type AppSidebarProps = ComponentProps<typeof Sidebar>;
 
@@ -57,47 +57,40 @@ export const AppSidebar = ({ ...props }: AppSidebarProps) => {
         <NavItems />
       </SidebarContent>
 
-      <SidebarFooter className="flex flex-col gap-2 p-4">
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <SidebarMenuButton className="bg-input hover:bg-input/80 transition-colors">
-              <div className="flex items-center justify-between w-full">
-                <p className="font-medium text-sm">Opções</p>
-                <CircleChevronDown className="w-5 h-5 text-muted-foreground" />
-              </div>
-            </SidebarMenuButton>
-          </DropdownMenuTrigger>
-
-          <DropdownMenuContent className="w-[220px] rounded-lg bg-background shadow-lg border border-border p-2">
-            <DropdownMenuLabel className="text-sm font-semibold text-foreground truncate">
-              {user?.name ?? user?.username ?? "Usuário"}
-            </DropdownMenuLabel>
-
-            <DropdownMenuSeparator />
-
-            <DropdownMenuItem
-              className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-accent hover:text-accent-foreground cursor-pointer"
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            >
-              {theme === "dark" ? (
-                <SunIcon className="w-5 h-5" />
-              ) : (
-                <MoonIcon className="w-5 h-5" />
-              )}
-              <span className="text-sm font-medium">
-                {theme === "dark" ? "Claro" : "Escuro"}
-              </span>
-            </DropdownMenuItem>
-
-            <DropdownMenuItem
-              className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-destructive/90 hover:text-destructive-foreground cursor-pointer"
-              onClick={logout}
-            >
-              <ArrowLeftStartOnRectangleIcon className="w-5 h-5" />
-              <span className="text-sm font-medium">Sair</span>
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+      <SidebarFooter>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <SidebarMenuButton>
+                  <User2 /> {user?.name} <ChevronUp className="ml-auto" />
+                </SidebarMenuButton>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem
+                  className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-accent hover:text-accent-foreground cursor-pointer"
+                  onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                >
+                  {theme === "dark" ? (
+                    <SunIcon className="w-5 h-5" />
+                  ) : (
+                    <MoonIcon className="w-5 h-5" />
+                  )}
+                  <span className="text-sm font-medium">
+                    {theme === "dark" ? "Claro" : "Escuro"}
+                  </span>
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-destructive/90 hover:text-destructive-foreground cursor-pointer"
+                  onClick={logout}
+                >
+                  <ArrowLeftStartOnRectangleIcon className="w-5 h-5" />
+                  <span className="text-sm font-medium">Sair</span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </SidebarMenuItem>
+        </SidebarMenu>
       </SidebarFooter>
 
       <SidebarRail />

@@ -65,7 +65,7 @@ export const GroupSettings = () => {
   const digits = joinCode.split("").slice(0, 5);
 
   return (
-    <div className="p-6 w-full space-y-6">
+    <div className="p-6 px-2 w-full space-y-6">
       <div className="grid grid-cols-1 lg:grid-cols-[1fr,420px] gap-6">
         <div className="space-y-6">
           {isAdmin && (
@@ -106,8 +106,12 @@ export const GroupSettings = () => {
                 </div>
               </div>
 
-              <div className="mt-6 flex items-center gap-3">
-                <Button onClick={handleSubmit} disabled={!dirty || isPending}>
+              <div className="mt-6 flex items-center gap-3 flex-wrap">
+                <Button
+                  onClick={handleSubmit}
+                  disabled={!dirty || isPending}
+                  className="w-full sm:w-auto"
+                >
                   {isPending ? (
                     <span className="inline-flex items-center gap-2">
                       <Loader2 className="w-4 h-4 animate-spin" />
@@ -125,6 +129,7 @@ export const GroupSettings = () => {
                     setDescription(group?.description ?? "");
                   }}
                   disabled={!dirty}
+                  className="w-full sm:w-auto"
                 >
                   Resetar
                 </Button>
@@ -150,7 +155,7 @@ export const GroupSettings = () => {
                 </p>
               </div>
 
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 flex-wrap">
                 <div className="flex-1 flex items-center justify-between bg-surface/60 border border-border rounded-lg px-3 py-2">
                   <div>
                     <span className="block text-xs text-muted-foreground">
