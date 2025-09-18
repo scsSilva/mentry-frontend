@@ -90,7 +90,7 @@ export const GroupDetails = () => {
         </div>
       </header>
 
-      <div className="flex gap-4 border-b border-border mb-4">
+      <div className="flex gap-4 overflow-x-auto no-scrollbar border-b border-border mb-4 -mx-4 px-4 sm:mx-0 sm:px-0">
         {TABS.map((tab) => (
           <button
             key={tab}
