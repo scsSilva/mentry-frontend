@@ -24,6 +24,7 @@ export const Auth = () => {
   const { theme } = useTheme();
 
   const [activeTab, setActiveTab] = useState("login");
+  const [isTabLocked, setIsTabLocked] = useState(false);
 
   const loginForm = useForm<LoginSchema>({
     resolver: zodResolver(loginSchema),
@@ -39,17 +40,23 @@ export const Auth = () => {
   const signupPassword = signUpForm.watch("password");
 
   const onSubmitLogin = (data: LoginSchema) => {
+    setIsTabLocked(true);
     loginMutate(
       { username: data.username, password: data.password },
       {
         onError: () => {
           toast.error("Ocorreu um erro ao fazer login");
+          setIsTabLocked(false);
+        },
+        onSuccess: () => {
+          setIsTabLocked(false);
         },
       }
     );
   };
 
   const onSubmitSignUp = (data: SignUpSchema) => {
+    setIsTabLocked(true);
     signUpMutate(
       {
         name: data.name,
@@ -59,6 +66,10 @@ export const Auth = () => {
       {
         onError: () => {
           toast.error("Ocorreu um erro ao criar conta");
+          setIsTabLocked(false);
+        },
+        onSuccess: () => {
+          setIsTabLocked(false);
         },
       }
     );
@@ -78,7 +89,14 @@ export const Auth = () => {
         ) : (
           <LogoDark className="h-8" />
         )}
-        <Tabs value={activeTab} onValueChange={(value) => setActiveTab(value)}>
+        <Tabs
+          value={activeTab}
+          onValueChange={(value) => {
+            if (!isTabLocked) {
+              setActiveTab(value);
+            }
+          }}
+        >
           <CardHeader>
             <TabsList className="w-full">
               <TabsTrigger value="login">Login</TabsTrigger>
