@@ -1,5 +1,9 @@
 import { AppSidebar } from "@/components/shared/app-sidebar";
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import {
+  SidebarInset,
+  SidebarProvider,
+  SidebarTrigger,
+} from "@/components/ui/sidebar";
 import { Explore } from "@/pages/Explore";
 import { GroupDetails } from "@/pages/GroupDetails";
 import { Groups } from "@/pages/Groups";
@@ -10,6 +14,9 @@ const SidebarLayout = () => (
   <SidebarProvider>
     <AppSidebar collapsible="icon" />
     <SidebarInset>
+      <div className="p-2 md:hidden">
+        <SidebarTrigger />
+      </div>
       <Outlet />
     </SidebarInset>
   </SidebarProvider>
