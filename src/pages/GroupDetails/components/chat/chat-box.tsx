@@ -110,7 +110,7 @@ export const ChatBox = () => {
               message={{
                 id: msg.id,
                 text: msg.text,
-                sender: isUser ? "Você" : msg.sender.name,
+                sender: isUser ? "Você" : msg.sender.username,
                 timestamp: msg.timestamp,
               }}
               isUser={isUser}
